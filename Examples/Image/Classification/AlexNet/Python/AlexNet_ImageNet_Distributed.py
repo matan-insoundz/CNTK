@@ -87,8 +87,8 @@ def LocalResponseNormalization(k, n, alpha, beta, name=''):
 def create_alexnet():
 
     # Input variables denoting the features and label data
-    feature_var = input_variable((num_channels, image_height, image_width))
-    label_var = input_variable((num_classes))
+    feature_var = input((num_channels, image_height, image_width))
+    label_var = input((num_classes))
 
     # apply model to input
     # remove mean value 

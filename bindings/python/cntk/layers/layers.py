@@ -11,7 +11,7 @@ from __future__ import division
 import numpy as np
 from ..ops.functions import Function
 from ..ops.variables import Variable
-from ..ops import parameter, input_variable, placeholder_variable, combine
+from ..ops import parameter, input, placeholder, combine
 from ..ops import times, element_times, convolution, convolution_transpose, pooling, unpooling, batch_normalization, dropout, splice, reshape, sequence, softmax, tanh, reduce_sum, reduce_mean, sqrt
 from ..utils import Record
 from cntk.internal import _as_tuple

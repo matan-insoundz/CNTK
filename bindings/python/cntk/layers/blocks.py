@@ -11,7 +11,7 @@ blocks -- basic building blocks that are semantically not layers (not used in a 
 
 from __future__ import division
 import numpy as np
-from cntk import parameter, constant, input_variable, placeholder_variable, combine, alias, sequence
+from cntk import parameter, constant, input, placeholder, combine, alias, sequence
 from cntk.axis import Axis
 from cntk.ops import times, slice, sigmoid, tanh, log, exp, softplus, past_value, future_value
 from cntk.utils import Record, Signature
@@ -139,7 +139,7 @@ def Input(shape, dtype=default_override_or(np.float32), needs_gradient=True, is_
     '''
 
     dtype = get_default_override(Input, dtype=dtype)
-    return input_variable(shape=shape, dtype=dtype, needs_gradient=needs_gradient, is_sparse=is_sparse,
+    return input(shape=shape, dtype=dtype, needs_gradient=needs_gradient, is_sparse=is_sparse,
                           dynamic_axes=dynamic_axes, name=name)
 
 def Placeholder(shape=None, dynamic_axes=None, is_sparse=False, name='placeholder'):
@@ -159,11 +159,11 @@ def Placeholder(shape=None, dynamic_axes=None, is_sparse=False, name='placeholde
     if shape is not None or dynamic_axes is not None or is_sparse is not None:
         import warnings
         warnings.warn('Placeholder() no longer requires shapes, axes, or spares to be specified. Please just remove the arguments.', DeprecationWarning)
-    return placeholder_variable(name=name)
+    return placeholder(name=name)
     # TODO: delete these vv once confirmed that this is indeed not used anymore
-    #p = placeholder_variable(shape=shape, dynamic_axes=dynamic_axes, is_sparse=is_sparse, name=name) # TODO: use (*args, **kwargs)?
+    #p = placeholder(shape=shape, dynamic_axes=dynamic_axes, is_sparse=is_sparse, name=name) # TODO: use (*args, **kwargs)?
     # BUGBUG: placeholder does not know is_sparse
-    #return placeholder_variable(shape=shape, dynamic_axes=dynamic_axes, name=name) # TODO: use (*args, **kwargs)?
+    #return placeholder(shape=shape, dynamic_axes=dynamic_axes, name=name) # TODO: use (*args, **kwargs)?
 
 def ForwardDeclaration(name='forward_declaration'):
     '''

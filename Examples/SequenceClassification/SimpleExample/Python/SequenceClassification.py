@@ -10,7 +10,7 @@ from cntk import Trainer, Axis #, text_format_minibatch_source, StreamConfigurat
 from cntk.io import MinibatchSource, CTFDeserializer, StreamDef, StreamDefs, INFINITELY_REPEAT, FULL_DATA_SWEEP
 from cntk.device import cpu, try_set_default_device
 from cntk.learners import sgd, learning_rate_schedule, UnitType
-from cntk.ops import input_variable, sequence
+from cntk.ops import input, sequence
 from cntk.losses import cross_entropy_with_softmax
 from cntk.metrics import classification_error
 
@@ -43,9 +43,8 @@ def train_sequence_classifier(debug_output=False):
     num_output_classes = 5
 
     # Input variables denoting the features and label data
-    features = input_variable(shape=input_dim, is_sparse=True)
-    label = input_variable(num_output_classes, dynamic_axes=[
-                           Axis.default_batch_axis()])
+    features = input(shape=input_dim, is_sparse=True)
+    label = input(num_output_classes)
 
     # Instantiate the sequence classification model
     classifier_output = LSTM_sequence_classifer_net(

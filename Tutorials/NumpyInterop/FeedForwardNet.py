@@ -10,7 +10,7 @@ import os
 from cntk.device import cpu, try_set_default_device
 from cntk import Trainer
 from cntk.learners import sgd, learning_rate_schedule, UnitType
-from cntk.ops import input_variable, sigmoid
+from cntk.ops import input, sigmoid
 from cntk.losses import cross_entropy_with_softmax
 from cntk.metrics import classification_error
 from cntk.logging import ProgressPrinter
@@ -44,8 +44,8 @@ def ffnet():
     hidden_layers_dim = 50
 
     # Input variables denoting the features and label data
-    input = input_variable((input_dim), np.float32)
-    label = input_variable((num_output_classes), np.float32)
+    input = input((input_dim), np.float32)
+    label = input((num_output_classes), np.float32)
 
     # Instantiate the feedforward classification model
     netout = fully_connected_classifier_net(
